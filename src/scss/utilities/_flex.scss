@@ -46,3 +46,57 @@
     .align-self#{$infix}-stretch  { align-self: stretch !important; }
   }
 }
+
+
+.flex1{
+  flex:1;
+}
+.flex2{
+  flex:1;
+}
+.flex3{
+  flex:1;
+}
+.flex4{
+  flex:1;
+}
+.flex5{
+  flex:1;
+}
+
+.flex{
+  display:flex;
+
+}
+
+.flex-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.shrink{
+  flex-shrink: 0;
+}
+
+.space-between{
+  
+  justify-content: space-between;
+}
+.space-around{
+  justify-content:space-around;
+}
+.column{
+  flex-direction:column;
+}
+.align-items-center{
+    align-items: center;
+
+}
+
+
+
+
+
+

@@ -37,6 +37,9 @@
 .text-white {
   color: #fff !important;
 }
+.text-gray{
+  color:$gray-light;
+}
 
 @include text-emphasis-variant('.text-muted', $text-muted);
 
@@ -58,4 +61,29 @@
 
 .text-hide {
   @include text-hide();
+}
+
+
+.text-white{
+  color:#fff;
+}
+
+.text-small{
+font-size:.5rem;
+}
+
+
+.text-wide{
+  font-weight:600;
+}
+
+.text-big{
+  font-size:1.2rem;
+}
+
+.text-lg{
+  font-size:1.4rem;
+}
+.text-red{
+  color:red;
 }
