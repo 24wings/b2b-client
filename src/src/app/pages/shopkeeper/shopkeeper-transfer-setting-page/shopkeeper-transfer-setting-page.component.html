@@ -1,0 +1,78 @@
+<app-transition *ngIf="state==View.List">
+  <div class="screen bg-gray">
+    <div class="list">
+      <div *ngFor="let transfer of transfers" class="flex space-between container bg-white flex-center">
+        <div class="">
+          <img [src]="transfer.logo" alt="">
+          <span>{{transfer.name}}</span>
+        </div>
+        <span class="setting-btn" (click)="selectTransfer(transfer)">配置</span>
+      </div>
+    </div>
+  </div>
+</app-transition>
+
+
+<div *ngIf="state==View.Setting">
+  <!-- 物流设置页面 -->
+  <app-transition>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>配送区域名称</th>
+          <th>配送区域</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sendArea of sendAreas">
+          <td> {{sendArea.areaname}}</td>
+          <td> <span *ngFor="let area of sendArea.areas;let i=index">{{area.city.name}}  <span *ngIf="i!=sendArea.areas.length">,</span>            </span>
+          </td>
+          <td> <span class="setting-btn"> 设置</span></td>
+
+        </tr>
+      </tbody>
+
+    </table>
+
+
+
+  </app-transition>
+  <button class="btn btn-block bg-orange text-center text-white fixed-bottom" (click)="state=View.CreateSetting">添加</button>
+</div>
+
+<app-transition *ngIf="state==View.CreateSetting">
+  <div class="screen bg-gray">
+    <div class="container bg-white flex flex-center padding-half">
+      <span class="shrink text-small">配送区域名称:</span>
+      <input type="text" class="form-control" [(ngModel)]="newSendArea.areaname">
+    </div>
+    <div class="container mt1 bg-white">
+      <div class="  flex flex-center padding-half">
+        <!-- <span> 首重:</span> <input type="text" class="small-input">g <input type="text" class="small-input margin-left-1">        <span>元</span> -->
+      </div>
+    </div>
+    <div class="container mt1 bg-white">
+      <div class="bg-white  flex flex-center padding-half">
+        <!-- <span> 超出:</span> <input type="text" class="small-input">g <input type="text" class="small-input margin-left-1">        <span>元</span> -->
+      </div>
+    </div>
+
+    <div class="container bg-white mt1">
+      <div> 配送区域:</div>
+      <div class="col-12 areas text-center">
+        <span class="col-6 no-padding" *ngFor="let area of newSendArea.areas"> {{area.city.name}} <span class="bg-orange circle close-btn" (click)="removeSendAreaCity(area.city)"> <i class="icon iconfont icon-close48"></i> </span></span>
+        <span class="col-6 no-padding" (click)="transferAddressSelect.show()"> <i class="icon iconfont icon-anonymous-iconfont" style="height:1rem"></i> </span>
+
+
+
+      </div>
+    </div>
+    <button (click)="submitSendArea()" class="btn btn-block bg-orange confirm-btn center-block">确定</button>
+  </div>
+
+
+</app-transition>
+
+<app-address-select #transferAddressSelect (onSelectRegion)="selectTransferRegion($event);" (onSelectCity)="addProductTransferAddress($event);transferAddressSelect.hide()"></app-address-select>

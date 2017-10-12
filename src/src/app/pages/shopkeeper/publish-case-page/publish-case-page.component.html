@@ -1,0 +1,24 @@
+<app-transition>
+  <div class="item">
+    <input type="text" class="full-width border-none" placeholder="案例标题" [(ngModel)]="newCase.title">
+  </div>
+  <div class="bg-gray" style="height:.5rem"></div>
+
+  <div class="item">
+    <textarea class="full-width" style="height:4rem" [(ngModel)]="newCase.content"></textarea>
+  </div>
+
+  <div class="bg-gray" style="height:.5rem"></div>
+
+  <div class="container">
+    <div class="row" style="margin-top:2rem;">
+      <div class="col-3" *ngFor="let img of newCase.images">
+        <img [src]="img" alt="" class="img-fluid">
+      </div>
+      <div class="col-3" (click)="addImage()">
+        <span class="plus"><i class="icon iconfont  icon-anonymous-iconfont"></i> </span>
+      </div>
+    </div>
+  </div>
+</app-transition>
+<button class="btn btn-block bg-orange text-white  fixed-bottom" (click)="submit()">发布</button>

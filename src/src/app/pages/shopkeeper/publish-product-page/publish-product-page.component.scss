@@ -1,0 +1,137 @@
+.camare{
+    width: 5rem;
+    height: 5rem;
+    line-height: 5rem;
+    i{
+        font-size: 3rem;
+        color: #fff;
+    }
+}
+
+.images {
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 1rem;
+    div {
+        margin-right: 2vw;
+        
+        position: relative;
+        img{
+            width:17vw;
+        }
+        .close{
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            background: orange;
+            border-radius: 50%;
+            width: 1.2rem;
+            height: 1.2rem;
+            line-height: 1rem;
+        }
+    }
+    
+}
+
+.underline{
+    border:none;
+    border-bottom: 1px solid lightgray;
+    padding-top:.5rem;
+    padding-bottom: .5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.square{
+    width: 1rem;
+    height: 1rem;
+    border: 1px solid orange;
+    line-height: 1rem;
+    color:orange;
+}
+
+input{
+    text-align: right;
+}
+
+.btn.btn-block{
+    border :1px solid lightgray;
+    font-size: .5rem;
+}
+
+.activeTransfer{
+    
+    background: orange;
+    color:#fff;
+}
+
+.add,.publish{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+textarea{
+    resize: none;
+    outline: none;
+}
+.height3{
+line-height: 3rem;
+height: 3rem;
+}
+
+.meta{
+    padding:.5rem;
+    position: relative;
+}
+
+
+.close-right-top{
+    position: absolute;
+    right: -.5rem;
+    top: -.5rem;
+    background: orange;
+    border-radius: 50%;
+    color: #fff;
+    line-height: 1rem;
+    height: 1rem;
+}
+
+.add-btn{
+    border: 1px solid lightgray;
+    font-size: 1.3rem;
+    color: lightgray;
+    padding: 5px;
+}
+
+
+.full-width{
+    width: 100%;
+}
+
+
+// 可以编辑的背景透明文本框
+.edit{
+    border: none;
+    background: transparent;
+}
+
+.option{
+    border:1px solid lightgray;
+    border-radius: 5px;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 45%;
+    max-width: 50%;
+    margin-right: 5%;
+    text-align: center;
+    &.active{
+        border:1px solid orange;
+    }
+}
+
+.num{
+    background: #eeeeee;
+    padding: 5px 1rem;
+    width: 20vw;
+}

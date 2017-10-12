@@ -1,0 +1,76 @@
+.line1 {
+    background: #eee;
+    height: 1rem;
+}
+
+.flex8 {
+    flex: 8;
+}
+
+.red-circle {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 1rem;
+    background: orange;
+}
+
+.info {
+    padding-top: .5rem;
+}
+
+.task {
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+
+.avatar {
+    width: 20vw;
+    height: 20vw;
+}
+
+.enter {
+    font-size: 1.2rem;
+    color: lightgray;
+}
+
+.title {
+    font-size: .8rem;
+}
+
+.time {
+    color: lightgray;
+    font-size: .5rem;
+}
+
+.summary {
+    font-size: .5rem;
+    color: lightgray;
+    white-space: nowrap;
+}
+
+input {
+    border: none;
+    background: transparent;
+    outline: none;
+    width: 100%;
+    height: 100%;
+}
+
+textarea {
+    resize: none;
+    outline: none;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    height: 8rem;
+    border: none;
+}
+
+.bottom-bar {
+    &>div {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        text-align: center;
+    }
+}

@@ -1,0 +1,30 @@
+<app-transition>
+  <div class="items ">
+    <div class="flex space-between" routerLink="/user/person-setting">
+      <span>
+        <img [src]="user.avatar" alt="" class="avatar"> {{user.nickname}}
+      </span>
+      <span class="flex flex-center"> <i class="icon iconfont icon-enter"></i> </span>
+    </div>
+    <div class="flex space-between" routerLink="/user/recive-address">
+      <span>我的收货地址</span>
+      <span class="flex flex-center"> <i class="icon iconfont icon-enter"></i> </span>
+    </div>
+    <div class="bg-gray" style="height:1rem"></div>
+    <div class="flex space-between" routerLink="/user/modify-password">
+      <span>账户与安全</span>
+      <span class="flex flex-center"> <i class="icon iconfont icon-enter"></i> </span>
+    </div>
+    <div class="bg-gray" style="height:1rem"></div>
+
+    <div class="flex space-between" routerLink="/user/recive-address">
+      <span>关于省城批发网</span>
+      <span class="flex flex-center"> <i class="icon iconfont icon-enter"></i> </span>
+    </div>
+
+  </div>
+
+</app-transition>
+
+
+<button class="fixed-bottom btn btn-block bg-orange  text-white  text-center" (click)="logout()">退出当前账户</button>

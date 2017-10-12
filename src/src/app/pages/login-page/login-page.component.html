@@ -1,0 +1,29 @@
+<app-transition>
+  <div class="container">
+    <div class="flex  row-reverse" appBack>
+      <span><i class="icon iconfont icon-close48 text-2x  text-red "></i> </span>
+    </div>
+    <div class="flex-center">
+      <div class="logo"></div>
+    </div>
+
+    <input class="underline-input full-width" placeholder="手机号" [(ngModel)]="phone" />
+    <input type="password" class="underline-input full-width" placeholder="密码" [(ngModel)]="password" />
+
+
+
+
+  </div>
+  <div class="container " style="width:80%;margin-top:1rem;">
+    <div class="flex space-between">
+      <span class="text-red" routerLink="/user-signup">个人注册</span>
+
+      <span class="text-red" routerLink="/shopkeeper-signup">企业注册</span>
+
+    </div>
+    <button class="bg-orange btn btn-block text-white rounded" style="margin-top:2rem;" (click)="login()">登录</button>
+    <div class="flex row-reverse text-red" routerLink="/forgot-password">忘记密码?</div>
+  </div>
+
+
+</app-transition>

@@ -1,0 +1,49 @@
+<app-transition class="bg-gray" style="min-height:100vh;">
+  <div class="container bg-white ">
+    <div class="underline flex space-between">
+      <span>收货人</span>
+      <input type="text" [(ngModel)]="sendProductAddress.name">
+    </div>
+    <div class="underline flex space-between">
+      <span>手机号码</span>
+      <input type="text" [(ngModel)]="sendProductAddress.phone">
+    </div>
+    <div class="underline flex space-between">
+      <span>邮政编号</span>
+      <input type="text" [(ngModel)]="sendProductAddress.postalCode">
+    </div>
+    <div class="underline flex space-between" (click)="addressSelect.show()">
+      <span>省份</span>
+      <input type="text" disabled="disabled" [(ngModel)]="sendProductAddress.region.name">
+      <span class="shrink"><i class="icon iconfont icon-down2"></i></span>
+
+    </div>
+    <div class="underline flex space-between" (click)="addressSelect.show()">
+      <span>城市</span>
+      <input type="text" disabled="disabled" [(ngModel)]="sendProductAddress.city.name">
+      <span class="shrink"><i class="icon iconfont icon-down2"></i></span>
+
+    </div>
+    <div class="underline flex space-between">
+      <span>地区</span>
+      <input type="text" disabled="disabled" [(ngModel)]="sendProductAddress.town.name">
+      <span class="shrink"><i class="icon iconfont icon-down2"></i></span>
+
+    </div>
+
+    <div class="underline flex space-between">
+      <textarea [(ngModel)]="sendProductAddress.detailAddress"></textarea>
+    </div>
+
+
+  </div>
+  <div class="container ">
+    <div style="padding-top:3rem;padding-bottom:3rem">
+      <div class="btn rounded  bg-orange center-block text-white" style="margin-top:2rem; width:80%;padding:auto 20px;" (click)="modifySendProductAddress()">确定</div>
+    </div>
+
+  </div>
+
+</app-transition>
+<app-address-select #addressSelect (onSelectRegion)="sendProductAddress.region=$event;" (onSelectCity)="sendProductAddress.city=$event"
+  (onSelectTown)="sendProductAddress.town =$event"></app-address-select>

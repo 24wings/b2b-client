@@ -1,0 +1,230 @@
+<app-transition *ngIf="state==View.List">
+  <div class="flex flex-center bg-gray " style="min-height:7rem;">
+    <span class="bg-orange text-center rounded-circle camare" (click)="addProductImage()">
+        <i class="icon iconfont icon-zhaoxiang  color-white "></i>
+         
+    </span>
+  </div>
+  <div class="bg-gray">
+    <div class="flex flex-center images">
+      <div *ngFor="let image of product.images;let i = index;">
+        <img [src]="image" alt="">
+        <span class="close" (click)="removeProductImage(i)"><i class="icon iconfont icon-close48"></i></span>
+      </div>
+
+
+    </div>
+  </div>
+
+  <div class="container">
+    <span class="text-gray text-small">请输入商品名称</span>
+    <div class="underline border-none">
+      <input type="text" style="width:100%" class="border-none" [(ngModel)]="product.name" (change)="product.name.length>60?product.name=product.name.substring(0,60):'' ">
+      <span class="shrink">{{product.name.length}}/60</span>
+    </div>
+
+    <div class="underline " (click)="state=View.SelectingProductTag;productTagSelect.show()">分类(添加选择)
+      <span class="text-gray text-small" *ngIf="product.productTag">{{product.productTag.name}}</span>
+      <span> <i class="icon iconfont icon-enter"></i></span>
+    </div>
+
+  </div>
+  <div class="bg-gray" style="height:1rem"></div>
+  <div class="container">
+    <div class="underline border-none">
+      <span class="shrink">品牌</span>
+      <input type="text" style="width:100%" class="border-none" [(ngModel)]="product.brand">
+    </div>
+    <div class="underline ">
+      <span class="text-gray text-small shrink">价格</span>
+      <input type="number" style="width:100%" class="border-none" [(ngModel)]="product.price">
+    </div>
+
+    <div class="underline " (click)="state=View.TransferSetting">
+      <span class="text-gray text-small">物流设置</span>
+      <span class="shrink"> <i class="icon iconfont icon-enter"></i></span>
+    </div>
+    <div class="underline " (click)="state=View.AddingSummaryContent">
+      <span class="text-gray text-small">宝贝描述</span>
+      <span> <i class="icon iconfont icon-enter"></i></span>
+    </div>
+
+
+    <div class="underline " (click)="toggleProductActive()">
+      <span class="text-gray text-small">是否可购买</span>
+      <span class="square"><i *ngIf="product.active" class="icon iconfont icon-icon-copy"></i> </span>
+    </div>
+
+
+    <div class="underline " (click)="state=View.EditProductParam">
+      <span class="text-gray text-small">产品参数</span>
+      <span> <i class="icon iconfont icon-enter"></i></span>
+    </div>
+
+    <div class="underline " (click)="product.oneProductToSend=!product.oneProductToSend">
+      <span class="text-gray text-small">一件代发</span>
+      <span class="square"> <i *ngIf="product.oneProductToSend" class="icon iconfont icon-icon-copy"></i></span>
+
+    </div>
+    <div class="underline " (click)="selectProductMeta()">
+      <span class="text-gray text-small">商品规格(可选)</span>
+      <span> <i class="icon iconfont icon-enter"></i></span>
+    </div>
+
+    <div class="underline ">
+      <span class="text-gray text-small">使用优惠券</span>
+      <span> <i class="icon iconfont icon-enter"></i></span>
+    </div>
+
+
+
+
+  </div>
+  <div class="btn btn-block bg-orange text-center text-white" style="margin-top:1rem;" (click)="publishProduct()">确定</div>
+
+</app-transition>
+
+
+
+<app-product-tag #productTagSelect (onSelectedProductTag)="this.product.productTag= $event; state=View.List"></app-product-tag>
+
+<div *ngIf="state==View.TransferSetting">
+  <app-transition>
+    <div class="bg-gray">
+      <div class="container bg-white">
+        <div>物流设置</div>
+        <div class="col-4 btn bg-orange btn-block text-white">{{selectedTransfer.name}}</div>
+
+        <span style="margin-top:2rem" class="center-block text-center"><i class="icon iconfont icon-icon_arrow_up "></i></span>
+
+        <div class="row">
+          <div (click)="selectedTransfer=transfer" class="col-4 " *ngFor="let transfer of transfers">
+            <span class="btn btn-block bg-white text-orange" [class.activeTransfer]="selectedTransfer==transfer">{{transfer.name}}</span>            </div>
+        </div>
+        <div style="margin-top:1rem">
+          <div class="underline flex space-between"> <span> 地区</span> <span> <i class="icon iconfont icon-enter"></i></span></div>
+
+        </div>
+        <div>
+          <div>快递运费</div>
+          <div class="row">
+            <span class="col-4"><div class="btn btn-block" [class.activeTransfer]="product.isMailingFee" (click)="product.isMailingFee=true">包邮</div></span>
+            <span class="col-4"><div class="btn btn-block " [class.activeTransfer]="!product.isMailingFee" (click)="product.isMailingFee=false">不包邮</div></span>
+
+          </div>
+        </div>
+        <div>
+          <div>物流设置</div>
+          <div class="row">
+            <span class="col-4"><div class="btn btn-block" [class.activeTransfer]="product.transferSetting==TransferSetting.ProductSelfGet" (click)="product.transferSetting=TransferSetting.ProductSelfGet">物流自提</div></span>
+            <span class="col-4"><div class="btn btn-block " [class.activeTransfer]="product.transferSetting==TransferSetting.SendToHome" (click)="product.transferSetting=TransferSetting.SendToHome">快递到家</div></span>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+  </app-transition>
+
+  <div class="btn btn-block bg-orange text-white fixed-bottom" (click)="state=View.List;product;product.transfer=selectedTransfer;">确定</div>
+</div>
+
+
+
+<div *ngIf="state==View.AddingSummaryContent">
+  <!-- 添加内容页面 -->
+  <app-transition>
+    <div class="container">
+
+
+      <textarea style="width:100%;border:none; height:30vh;" placeholder="添加图片和文字让你的宝贝更加诱人" #summaryContentTextInput></textarea>
+    </div>
+    <div class="container">
+      <img [src]="content.data" alt="" class="img-fluid" *ngFor="let content of product.summaryContent">
+
+    </div>
+
+  </app-transition>
+  <div class="fixed-bottom">
+    <div class="flex text-center">
+      <div class="flex1 bg-orange text-white add" (click)="addSummaryContentImage();">添加图片</div>
+      <div class="flex1 bg-orange text-white publish" (click)="addSummaryContentText(summaryContentTextInput.value);state=View.List">发布宝贝</div>
+    </div>
+  </div>
+</div>
+
+
+<!--产品参数  -->
+<div *ngIf="state==View.EditProductParam">
+  <app-transition>
+    <div class="container">
+      <div class="row flex row-reverse height3">
+        <div class="col-3 text-center">编辑</div>
+      </div>
+      <div class="flex" *ngFor="let keyValue of product.datas;let i =index">
+        <div class="flex1 bg-gray meta">
+          <span class="full-width" style="    white-space: nowrap">
+          <input type="text" [(ngModel)]="keyValue.key" class="edit full-width">:
+        </span>
+        </div>
+        <div class="flex4 bg-gray meta" style="margin-left:1rem">
+          <span> <input type="text" class="edit text-left full-width" [(ngModel)]="keyValue.value"> </span>
+          <span (click)="removeData(i)" class="close-right-top"> <i class="icon iconfont icon-close48"></i></span>
+        </div>
+
+      </div>
+      <div class="flex row-reverse">
+        <div class="col-3"> <i class="icon iconfont icon-anonymous-iconfont add-btn" (click)="product.datas.push({key:'',value:''})"></i></div>
+      </div>
+    </div>
+
+  </app-transition>
+  <button class="btn fixed-bottom  btn-block bg-orange text-white " (click)="state=View.List">提交</button>
+</div>
+
+<!-- 选择商品规格 -->
+<div *ngIf="state==View.SelectingProductMeta">
+  <app-transition>
+    <div class="container bg-white" style="padding-top:.5rem;padding-bottom:.5rem">
+      产品规格
+    </div>
+    <div class="bg-gray" style="height:.5rem"></div>
+    <div class="container" *ngFor="let metaData of metaDatas;let i = index">
+      <div class="underline">
+        {{metaData.name}}
+      </div>
+      <div class="row">
+        <div class="option" *ngFor="let option of metaData.options" [class.active]="hasSelectOption(option)" (click)="selectKeyword({key:metaData.name,value:option},i)">
+          {{option}}
+        </div>
+      </div>
+    </div>
+    <div class="bg-gray" style="height:.5rem"></div>
+    <div class="underline">价格/库存</div>
+    <div class="group">
+      <div *ngFor="let price of product.prices">
+        <div>
+          <span *ngFor="let keyword of price.keywords">{{keyword}}  </span>
+        </div>
+        <div class="flex">
+          <span class=" flex1"><div type="text" class="padding-5  edit num">{{price.money}} </div></span>
+          <span class=" flex1"> <input type="text" class="padding-5  edit num">{{price.num}}</span>
+        </div>
+
+      </div>
+      <div class="">
+        <span *ngFor="let keyword of selectedKeywords">{{keyword.value}}  </span>
+      </div>
+      <div class="flex">
+        <span class=" flex1"><input type="number" class="padding-5  edit num"  [(ngModel)]="money" placeholder="单价"></span>
+        <span class=" flex1"> <input type="number" class="padding-5  edit num" [(ngModel)]="num" placeholder="库存数量"></span>
+        <span class="flex1" (click)="addProductMetaData()"><i class="icon iconfont icon-anonymous-iconfont text-2x"></i></span>
+      </div>
+
+    </div>
+
+  </app-transition>
+  <button class="fixed-bottom btn btn-block bg-orange text-center text-white" (click)="confirmProductPrices()">确定</button>
+</div>

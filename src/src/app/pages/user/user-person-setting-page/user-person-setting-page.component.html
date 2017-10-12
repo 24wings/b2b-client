@@ -1,0 +1,40 @@
+<app-transition *ngIf="state==View.List">
+  <div class="items">
+    <div (click)="updateAvatar()">
+      <span>头像</span>
+      <span> <img [src]="user.avatar" alt="" class="avatar">  <i class="icon iconfont icon-enter"></i></span>
+    </div>
+    <div class="flex flex-center" (click)="state=View.ModifyNickname">
+      <span>昵称</span>
+      <span> {{user.nickname}}</span>
+    </div>
+    <div class="flex flex-center" (click)="SelectingSex=true">
+      <span>  性别</span>
+      <span>{{user.sex ==1?'男':'女'}}</span>
+    </div>
+
+  </div>
+</app-transition>
+
+<div *ngIf="state==View.ModifyNickname">
+  <app-transition>
+    <div class="container flex" style="margin-top:1rem;">
+      <input type="search" class="search" [(ngModel)]="user.nickname">
+      <div class="shrink"><i class="icon iconfont icon-close48 close"></i></div>
+
+    </div>
+    <div _ngcontent-c2="" class="text-gray text-sm" style="font-size: .5rem;text-align: center;">注意:与省城批发网或买家品牌冲突的昵称,省城批发网有权收回</div>
+    <div class="container" style="margin-top:2rem"><button class="btn btn-block bg-orange text-center text-white" (click)="modifyUsername()">保存</button></div>
+  </app-transition>
+</div>
+
+
+<div class="cover flex-center flex" *ngIf="SelectingSex==true">
+  <div class="container bg-white">
+    <div class="cover-items">
+      <div>修改性别</div>
+      <div (click)="user.sex=1;modifySex()">男</div>
+      <div (click)="user.sex=2;modifySex()">女</div>
+    </div>
+  </div>
+</div>

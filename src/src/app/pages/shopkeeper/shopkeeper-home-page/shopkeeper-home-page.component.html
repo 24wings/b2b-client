@@ -1,0 +1,111 @@
+<app-transition>
+  <div class=" full-bg" style="background-image:url(/assets/images/bg.jpg);height:27vh;">
+    <div class="text-right text-white " routerLink="/shopkeeper/setting"><i style="    font-size: 1.7rem;" class="icon iconfont  icon-setting"></i> </div>
+    <div class="flex">
+      <img class="img-fluid" src="/assets/images/shopkeeper/1.jpg" alt="" style="width:20vw;height:20vw;border-radius:50%;">
+      <div class="flex space-between  flex-center" style="width:60vw;">
+        <div class="info flex column text-white " style="padding-left:1rem;">
+          <span class="">{{shopkeeper.shopName}}</span>
+          <span class="text-small">余额:{{shopkeeper.balance | money }}  <span class="bg-white color-black" style="    padding: 3px 10px;
+          color: black; 
+          margin-left: 2rem;">提现</span></span>
+        </div>
+        <div>
+          <i class="icon iconfont icon-enter" style="font-size: 1.5rem;color: #fff; "></i></div>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-center" style="padding-top:1rem;padding-bottom:1rem;">
+    <div class="flex flex1 column text-center">
+      <span>今日访客</span>
+      <span>{{shopkeeper.todayVisitorNum}}
+        </span>
+    </div>
+    <div class="flex flex1 column text-center">
+      <span>今日总交易额</span>
+      <span>    {{shopkeeper.todayBussinessNum | money}}
+        </span>
+    </div>
+    <div class="flex flex1 column text-center">
+      <span>今日订单</span>
+      <span>
+          {{shopkeeper.todayOrderNum}}
+      </span>
+    </div>
+
+
+  </div>
+  <div class="bg-gray" style="height:1rem"></div>
+  <div class="container">
+    <div class="row">
+      <div class=" flex column text-center" style="width:24%;   margin-top: 1rem;" routerLink="/shopkeeper/publish-product">
+        <span class="circle item">
+            <i class="icon iconfont icon-fabu text-2x"></i>
+          </span>
+        <span class="text-small">发布宝贝</span>
+
+      </div>
+      <div class=" flex column text-center" style="width:24%;   margin-top: 1rem;" routerLink="/shopkeeper/product-manage">
+        <span class="circle item" style="background:#3eb9fc;">
+              <i class="icon iconfont  text-2x icon-baobei"></i>
+            </span>
+        <span class="text-small">宝贝管理</span>
+
+      </div>
+      <div class=" flex column text-center" style="width:24%;   margin-top: 1rem;">
+        <span class="circle item" style="background:#f3b23c;">
+                <i class="icon iconfont icon-dingdan-copy text-2x"></i>
+              </span>
+        <span class="text-small">订单管理</span>
+
+      </div>
+      <div class=" flex column text-center" style="width:24%;   margin-top: 1rem;">
+        <span class="circle item" style="background:#4eab33;">
+                    <i class="icon iconfont icon-yue text-2x"></i>
+                  </span>
+        <span class="text-small">我的余额</span>
+
+
+      </div>
+      <div class=" flex column text-center" style="width:24%;   margin-top: 1rem;">
+        <span class="circle item" style="background:#FCAB33;">
+                      <i class="icon iconfont icon-mycomment text-2x"></i>
+                    </span>
+        <span class="text-small">我的工单</span>
+
+
+      </div>
+      <div class=" flex column text-center" style="width:24%;   margin-top: 1rem;">
+        <span class="circle item" style="background:#fe823c;">
+                        <i class="icon iconfont icon-youhuiquan text-2x"></i>
+                      </span>
+        <span class="text-small">优惠券</span>
+
+
+      </div>
+      <div class=" flex column text-center" style="width:24%;   margin-top: 1rem;" routerLink="/shopkeeper/publish-case">
+        <span class="circle item" style="background:#3e89fc;">
+                          <i class="icon iconfont icon-fabu1 text-2x"></i>
+                        </span>
+        <span class="text-small">发布案例</span>
+
+
+      </div>
+      <div class=" flex column text-center" style="width:24%;   margin-top: 1rem;" routerLink="/shopkeeper/company-auth">
+        <span class="circle item">
+                            <i class="icon iconfont icon-dianpurenzheng text-2x"></i>
+                          </span>
+        <span class="text-small">店铺认证</span>
+
+
+      </div>
+
+
+
+
+
+    </div>
+
+
+  </div>
+</app-transition>

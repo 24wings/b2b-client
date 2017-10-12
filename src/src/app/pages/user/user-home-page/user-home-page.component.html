@@ -1,0 +1,86 @@
+<div class="banner full-bg">
+
+  <div class="setting" routerLink="/user/setting"> <i class="icon iconfont icon-setting text-2x"></i></div>
+  <div class="flex info">
+    <div class="flex1 flex flex-center" style="padding-left:1rem">
+      <img [src]="user.avatar?user.avatar:'/assets/images/shopkeeper/1.jpg'" class="img-fluid rounded-circle" alt="">
+    </div>
+    <div class="flex1 flex-center text-left">
+      <h6 class="text-white">{{user.nickname}}</h6>
+    </div>
+    <div class="flex2"></div>
+
+    <div class="flex1 text-right flex flex-center"> <span> <i class="icon iconfont icon-enter  text-white" style="font-size:1.5rem;" ></i></span> </div>
+  </div>
+
+</div>
+
+<div class="container flex items">
+  <div class="flex1 flex column text-center">
+    <span>{{user.favorites.length}}</span>
+    <span>收藏夹</span>
+  </div>
+  <div class="flex1 flex column text-center">
+    <span>{{user.followShops.length}}</span>
+    <span>关注店铺</span>
+  </div>
+  <div class="flex1 flex column text-center">
+    <span>{{user.tickets.length}}</span>
+    <span>优惠券</span>
+  </div>
+</div>
+<div class="bg-gray" style="height:1rem"></div>
+<div class="container sm-padding flex space-between border-bottom-line">
+  <span> 我的订单</span> <span class="text-gray text-small">查看更多订单 <i class="icon iconfont icon-enter"></i></span>
+</div>
+
+<div class="container flex  sm-padding text-center status">
+  <div class="flex1 flex column">
+    <span> <i class="icon iconfont icon-daifukuan"></i> </span>
+    <span>待付款</span>
+  </div>
+  <div class="flex1 flex column">
+    <span> <i class="icon iconfont icon-wodedingdan14"></i></span>
+    <span>待发货</span>
+
+  </div>
+  <div class="flex1 flex column">
+    <span> <i class="icon iconfont icon-daishouhuo"></i> </span>
+    <span>待收货</span>
+  </div>
+  <div class="flex1 flex column">
+    <span> <i class="icon iconfont icon-daipingjia"></i></span>
+    <span>待评价</span>
+  </div>
+
+  <div class="flex1 flex column">
+    <span> <i class="icon iconfont icon-tuikuan"></i></span>
+    <span>退款/售后</span>
+  </div>
+
+</div>
+
+<div class="bg-gray" style="height:1rem"></div>
+
+<div class="container border-bottom-line sm-padding ">常用功能</div>
+<div class="functions flex flex-center">
+  <div class="flex1 flex column flex-center" routerLink="/user/publish-task">
+    <span> <i class="icon iconfont icon-wodefabu" style="color:pink"> </i></span>
+    <span>我的发布</span>
+  </div>
+  <div class="flex1 flex column flex-center">
+    <span> <i class="icon iconfont icon-guyong" style="color:red"></i></span>
+    <span>我的雇佣</span>
+  </div>
+  <div class="flex1 flex column flex-center">
+    <span> <i class="icon iconfont icon-1" style="color:lightgray"></i></span>
+    <span>我的工单</span>
+  </div>
+  <div class="flex1 flex column flex-center">
+    <span> <i class="icon iconfont icon-pingjia" style="color:blueviolet;"></i></span>
+    <span>我的评价</span>
+  </div>
+</div>
+<div class="bg-gray" style="height:3rem"></div>
+
+<app-bottom-bar></app-bottom-bar>

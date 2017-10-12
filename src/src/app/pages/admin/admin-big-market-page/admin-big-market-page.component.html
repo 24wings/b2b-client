@@ -1,0 +1,105 @@
+<app-transition *ngIf="state==View.List">
+  <app-address-select #addressSelect (onSelectCity)="selectCity($event);addressSelect.hide()"></app-address-select>
+
+  <div class="container">
+    <div (click)="addressSelect.show()"> <button class="btn btn-primary">管理城市</button> <span *ngIf="selectedAddress">{{selectedAddress.name}}</span></div>
+
+    <div class="container">操作</div>
+    <div class="row">
+      <div class="btn btn-primary" (click)="state=View.List">列表</div>
+      <div class="btn btn-primary" (click)="state=View.AddBigMarket">添加大市场</div>
+    </div>
+
+    <div></div>
+  </div>
+  <div class="container">
+    <div class="row">当地大市场</div>
+    <div class="row">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>_id</th>
+            <th>名称</th>
+            <th>地址</th>
+            <th>商家</th>
+            <th>创建时间</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+
+
+  </div>
+
+
+</app-transition>
+
+
+
+<!-- 添加大市场 -->
+<app-transition *ngIf="state==View.AddBigMarket">
+  <div class="container">
+    <div class="form-group row" (click)="newBigMarketAddressSelect.show()">
+      <label for="example-text-input" class="col-2 col-form-label">市场城市</label>
+      <div class="col-10">
+        {{newBigMarket.region.name}} {{newBigMarket.city.name}}
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="example-search-input" class="col-2 col-form-label">市场名称</label>
+      <div class="col-10">
+        <input class="form-control" type="text" [(ngModel)]="newBigMarket.name">
+      </div>
+    </div>
+    <div class="row">
+      <h6 class="text-center">已归并为当前市场的商家</h6>
+      <table class="table">
+        <thead>
+
+          <th>_id</th>
+          <th>商户名称</th>
+          <th> 地址 </th>
+          <th>移除</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let shopkeeper of newBigMarket.shopkeepers;let i = index;">
+            <td>{{shopkeeper._id}}</td>
+            <td>{{shopkeeper.shopName}}</td>
+            <td>{{shopkeeper.companyAddress.name}}</td>
+            <td>
+              <div class="btn btn-primary" (click)="removeShopkeeper(shopkeeper,i)">移除</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="row">
+      <div class="text-center">尚未分配的该地区商家</div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>_id</th>
+            <th>商户名称</th>
+            <th>地址</th>
+            <th>分配</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let shopkeeper of shopkeepers;let i = index;">
+            <td>{{shopkeeper._id}}</td>
+            <td>{{shopkeeper.shopName}}</td>
+            <td>{{shopkeeper.companyAddress.name}}</td>
+            <td>
+              <div class="btn btn-primary" (click)="addShopkeeper(shopkeeper,i)">分配为该市场</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <button class="btn btn-primary" (click)="createNewBigMarket()">提交</button>
+  </div>
+
+
+  <app-address-select #newBigMarketAddressSelect (onSelectRegion)="newBigMarket.region=$event;" (onSelectCity)="newBigMarket.city=$event;listCityShopkeepers($event); newBigMarketAddressSelect.hide()"></app-address-select>
+
+</app-transition>

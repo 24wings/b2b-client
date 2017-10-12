@@ -1,0 +1,83 @@
+<div *ngIf="state==View.List">
+  <app-transition style="background:#eee;min-height:100vh;">
+
+    <div class="card" *ngFor="let reciveAddress of reciveAddresses">
+      <h6 class="sm-padding"> <span>{{reciveAddress.recivename}}</span> <span>{{reciveAddress.contactPhone.substring(0,4)}}****{{reciveAddress.contactPhone.substring(7,11)}} </span>        </h6>
+      <h6 style="font-size:.5rem;" class="sm-padding text-left text-gray border-bottom-line">{{reciveAddress.region.name}} {{reciveAddress.city.name}} {{reciveAddress.town.name}} {{reciveAddress.detailAddress}}
+      </h6>
+      <div class="flex ">
+        <div class="flex2">
+
+          <span *ngIf="reciveAddress._id == user.reciveAddress" (click)="setUserDefaultReciveAddress(reciveAddress)"><i class="icon iconfont icon-gou checked" ></i> 设置默认</span>
+
+          <span *ngIf="reciveAddress._id!=user.reciveAddress" (click)="setUserDefaultReciveAddress(reciveAddress)"> <i class="icon iconfont icon-circle text-orange" style="color:orange"></i>设置默认 </span>
+        </div>
+        <div class="flex1 text-gray" (click)="selectedAddress=reciveAddress;state=View.EditAddress"><i class="icon iconfont icon-edit-2"></i> 编辑</div>
+        <div class="flex1 text-gray" (click)="deleteReciveAddress(reciveAddress)"><i class="icon iconfont icon-weibiaoti-"></i> 删除</div>
+      </div>
+    </div>
+
+
+
+  </app-transition>
+  <button class="btn btn-block bg-orange text-white text-center fixed-bottom" (click)="state=View.CreatingAddress">添加新地址</button>
+</div>
+
+<!-- 增加收货地址 -->
+<div *ngIf="state== View.CreatingAddress">
+  <app-transition style="background:#eee;">
+    <div class="bg-gray" style="height:2rem;"></div>
+    <div class="item flex">
+      <span class="shrink">收货人:</span>
+      <input class="border-none" [(ngModel)]="newReciveAddress.recivename">
+    </div>
+    <div class="item flex">
+      <span class="shrink">手机号码:</span>
+      <input class="border-none" [(ngModel)]="newReciveAddress.contactPhone">
+    </div>
+    <div class="item flex" (click)="addressSelect.show()">
+      <span class="shrink">所在地区:</span>
+      <span style="width:100%">{{newReciveAddress.region.name}}{{newReciveAddress.city.name}}{{newReciveAddress.town.name}}</span>
+      <span class="shrink"> <i class="icon iconfont icon-enter"></i> </span>
+    </div>
+    <div class="item flex">
+      <span class="shrink">详细地址:</span>
+      <input class="border-none" [(ngModel)]="newReciveAddress.detailAddress">
+    </div>
+
+  </app-transition>
+  <button class="btn btn-block fixed-bottom bg-orange  text-center text-white" (click)="addReciveAddress()">完成</button>
+</div>
+<app-address-select #addressSelect (onSelectRegion)="newReciveAddress.region=$event" (onSelectCity)="newReciveAddress.city=$event"
+  (onSelectTown)="newReciveAddress.town=$event"></app-address-select>
+
+
+
+
+<!-- 增加收货地址 -->
+<div *ngIf="state== View.EditAddress">
+  <app-transition style="background:#eee;">
+    <div class="bg-gray" style="height:2rem;"></div>
+    <div class="item flex">
+      <span class="shrink">收货人:</span>
+      <input class="border-none" [(ngModel)]="selectedAddress.recivename">
+    </div>
+    <div class="item flex">
+      <span class="shrink">手机号码:</span>
+      <input class="border-none" [(ngModel)]="selectedAddress.contactPhone">
+    </div>
+    <div class="item flex" (click)="editAddressSelect.show()">
+      <span class="shrink">所在地区:</span>
+      <span style="width:100%">{{selectedAddress.region.name}}{{selectedAddress.city.name}}{{selectedAddress.town.name}}</span>
+      <span class="shrink"> <i class="icon iconfont icon-enter"></i> </span>
+    </div>
+    <div class="item flex">
+      <span class="shrink">详细地址:</span>
+      <input class="border-none" [(ngModel)]="selectedAddress.detailAddress">
+    </div>
+
+  </app-transition>
+  <button class="btn btn-block fixed-bottom bg-orange  text-center text-white" (click)="editReciveAddress()">完成</button>
+</div>
+<app-address-select #editAddressSelect (onSelectRegion)="selectedAddress.region=$event" (onSelectCity)="selectedAddress.city=$event"
+  (onSelectTown)="selectedAddress.town=$event"></app-address-select>

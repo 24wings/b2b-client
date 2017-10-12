@@ -1,0 +1,81 @@
+<app-transition>
+  <div class="container bg-gray" style="    padding-top: 1rem;padding-bottom: 1rem;">
+    <span>店铺设置</span>
+  </div>
+
+  <div class="container bg-white">
+    <div class="underline flex space-between flex-center" (click)="changeAvatar()">
+      <span>店铺头像</span>
+      <img [src]="shopkeeper.avatar" alt="" style="width:74px;height74px">
+    </div>
+
+    <div class="underline flex space-between flex-center" (click)="changeBackground()">
+      <span>店铺背景</span>
+      <img [src]="shopkeeper.background" alt="" style="width:74px;height74px;">
+    </div>
+
+    <div class="underline flex space-between flex-center">
+      <span>店铺名称</span>
+      <input type="text" placeholder="店铺介绍" [(ngModel)]="shopkeeper.shopName">
+    </div>
+    <div class="underline flex space-between flex-center">
+      <span>店铺介绍</span>
+      <input type="text" placeholder="" [(ngModel)]="shopkeeper.summary">
+    </div>
+    <div class="underline flex space-between flex-center" routerLink="/shopkeeper/send-product-address">
+      <span>发货地址</span>
+      <div *ngIf="sendProductAddress" class="address">{{sendProductAddress.region.name}} {{sendProductAddress.city.name}} {{sendProductAddress.town.name}} {{sendProductAddress.detailAddress}}</div>
+      <input type="text" disabled="disabled" *ngIf="!sendProductAddress">
+
+
+    </div>
+    <div class="underline flex space-between flex-center" routerLink="/shopkeeper/return-product-address">
+      <span>退货地址</span>
+      <div *ngIf="returnProductAddress" class="address">{{returnProductAddress.region.name}} {{returnProductAddress.city.name}} {{returnProductAddress.town.name}} {{returnProductAddress.detailAddress}}</div>
+      <input type="text" disabled="disabled" *ngIf="!returnProductAddress">
+
+    </div>
+
+
+
+
+  </div>
+  <div class="container bg-gray" style="    padding-top: 1rem;padding-bottom: 1rem;">
+    <span>联系方式</span>
+  </div>
+  <div class="container bg-white">
+    <div class="underline flex space-between flex-center">
+      <span>电话号码</span>
+      <input type="text" placeholder="" [(ngModel)]="shopkeeper.contactPhone">
+    </div>
+    <div class="underline flex space-between flex-center">
+      <span>微信号码</span>
+      <input type="text" placeholder="" [(ngModel)]="shopkeeper.weixin">
+    </div>
+    <div class="underline flex space-between flex-center">
+      <span>QQ号码</span>
+      <input type="text" placeholder="" [(ngModel)]="shopkeeper.qq">
+    </div>
+    <div class="underline flex space-between flex-center" routerLink="/shopkeeper/transfer-setting">
+      <span>物流配置</span>
+      <input type="text" placeholder="" disabled="disabled">
+      <span class="shrink"> <i class="icon iconfont icon-enter"></i></span>
+
+    </div>
+
+
+  </div>
+  <div class="">
+    <div class="btn rounded  bg-orange center-block text-white" style="margin-top:2rem; width:80%;padding-left:20px;padding-right:20px;"
+      (click)="confirmModify()">确定修改</div>
+  </div>
+
+
+  <div class="">
+    <div class="btn rounded  bg-orange center-block text-white" style="margin-top:2rem; width:80%;padding-left:20px;padding-right:20px;"
+      (click)="logout()">注销</div>
+  </div>
+
+
+
+</app-transition>

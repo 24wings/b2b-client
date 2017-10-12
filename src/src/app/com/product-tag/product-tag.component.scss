@@ -1,0 +1,44 @@
+.search-input{
+    display: flex;
+    border-radius: 10px;
+    padding-top:5px;
+    padding-bottom: 5px;
+
+    i{
+        flex-shrink: 0;
+    }
+    input{
+        width: 100%;
+        border:none;
+
+    }
+
+}
+
+.category{
+    div {
+        padding-top:1rem;
+        border:1px solid lightgray;
+        border-left: none;
+        padding-bottom: 1rem;
+        text-align: center;
+        font-size: 0.7rem;
+        &.active{
+            color:orange;
+            border-left: 2px solid orange;
+        }
+    }
+}
+
+.tags{
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: .5rem;
+    div {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        &.active{
+            color:orange;
+        }
+    }
+}

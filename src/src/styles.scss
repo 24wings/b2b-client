@@ -1,0 +1,38 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import './scss/bootstrap.scss';
+input {
+    outline: none;
+    background: #fff;
+}
+
+.underline-input {
+    line-height: 2rem;
+    height: 2rem;
+    border: none;
+    border-bottom: 1px solid gray;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 1rem;
+}
+
+.logo {
+    width: 35vw;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+    background: orange;
+    margin-top: 2rem;
+    padding-top: 35%;
+    margin-bottom: 2rem;
+}
+
+::-moz-placeholder {
+    font-size: .5rem;
+}
+
+::-webkit-input-placeholder {
+    font-size: .5rem;
+}

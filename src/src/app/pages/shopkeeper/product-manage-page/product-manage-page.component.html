@@ -1,0 +1,52 @@
+<app-transition>
+  <div class="search">
+    <div class="search-input">
+      <i class="icon iconfont icon-search"></i> <input type="search" (search)="search()" [(ngModel)]="keyword" class="" placeholder="铜合页">
+    </div>
+  </div>
+  <div>
+    <div class="tabs">
+      <div [class.active]="active" (click)="active=true;listProduct()">出售中</div>
+      <div [class.active]="!active" (click)="active=false;listProduct()"> 已下架</div>
+    </div>
+  </div>
+  <div class="bg-gray" style="height:.5rem;"></div>
+
+  <div class="container flex product" *ngFor="let product of products">
+    <div class="flex1 flex-center" *ngIf="edit" (click)="product.checked=!product.checked">
+      <i class="icon iconfont icon-circle" style="color:orange" *ngIf="!product.checked"> </i>
+      <i class="icon iconfont icon-gou" style="color:orange" *ngIf="product.checked"></i>
+    </div>
+    <div class="flex2 flex-center">
+      <img [src]="product.images[0]" alt="" class="img-fluid">
+    </div>
+    <div class="flex6" style="padding-left:1rem">
+      <h6><strong>{{product.name}}</strong></h6>
+      <h6>￥{{product.price}}</h6>
+      <span class="num">已售: {{product.saleNum}}</span>
+    </div>
+    <div class="flex2 text-right">
+      <span *ngIf="!edit" (click)="edit=true"> 编辑</span> <span *ngIf="edit" (click)="edit=false">完成</span>
+    </div>
+
+  </div>
+  <div class="bg-gray" style="height:.5rem;"></div>
+
+</app-transition>
+
+<div class="button-bar fixed-bottom flex" *ngIf="edit && active">
+
+  <div class="flex1 bg-white" (click)="toggleAll()">
+    <i class="icon iconfont icon-circle text-orange" *ngIf="!isAllChecked()"></i>
+    <i class="icon iconfont icon-gou" *ngIf="isAllChecked()"></i> 全选 </div>
+  <div class="flex1 bg-orange text-white" (click)="unActiveProduct()">下架</div>
+  <div class="flex1 text-white" style="background:red" (click)="deleteProduct()">删除</div>
+</div>
+<div class="button-bar fixed-bottom flex" *ngIf="edit && !active">
+
+  <div class="flex1 bg-white" (click)="toggleAll()">
+    <i class="icon iconfont icon-circle text-orange" *ngIf="!isAllChecked()"></i>
+    <i class="icon iconfont icon-gou" *ngIf="isAllChecked()"></i> 全选 </div>
+  <div class="flex1 bg-orange text-white" (click)="activeProduct()">上架</div>
+  <div class="flex1 text-white" style="background:red" (click)="deleteProduct()">删除</div>
+</div>

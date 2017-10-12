@@ -1,0 +1,20 @@
+.toolbar{
+    padding-top:.2rem;
+    border-top:1px solid #e2e2e2;
+    display:flex;
+    &>div{
+        flex:1;
+        text-align:center;
+        
+        i{
+            font-size:1.3rem;
+        }
+        span{
+            font-size:.5rem;
+        }
+    }
+}
+
+.active{
+    color:orange;
+}

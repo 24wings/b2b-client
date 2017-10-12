@@ -1,0 +1,37 @@
+<app-transition *ngIf="isOpen">
+  <div class="page bg-gray">
+    <div class="container">
+      <h6 class="bg-gray padding-half text-small">定位地址</h6>
+    </div>
+    <div class="container bg-white" style="padding-top:.5rem;padding-bottom:.5rem;">湖北省 武汉市 洪山区</div>
+    <div class="bg-gray padding-half" *ngFor="let city of citys" (click)="selectRegion(city);scrollTop()">
+      <h6 class="bg-white padding-half" style="padding-left:1rem">{{city.name}}</h6>
+    </div>
+
+  </div>
+
+  <div class="page cover flex" *ngIf="selectedRegion">
+    <div class="" style="flex:2;background:black;opacity:.6"></div>
+    <div style="flex:12;background:#fff;opacity:1">
+      <div *ngFor="let city of selectedRegion.children" (click)="selectCity(city);scrollTop() ">
+        <div type="text" class="underline container flex space-between " [class.active]="selectedCity==city">
+          <div>{{city.name}}</div>
+          <div> <i class="icon iconfont icon-icon_arrow_up" *ngIf="selectedCity!=city"></i> <i *ngIf="selectedCity==city" class="icon iconfont icon-down2"></i></div>
+
+        </div>
+        <!-- 小镇 -->
+        <div class="towns" *ngIf="selectedCity==city">
+          <div class="underline" *ngFor="let town of selectedCity.children" (click)="selectTown(town)">{{town.name}}</div>
+
+
+        </div>
+      </div>
+
+
+
+    </div>
+
+  </div>
+
+
+</app-transition>

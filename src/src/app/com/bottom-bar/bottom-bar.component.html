@@ -1,0 +1,26 @@
+<!-- 工具条 -->
+
+<div class="toolbar fixed-bottom flex container bg-white" routerLink="/">
+
+  <div class=" flex column " [class.active]="activePath== '/' || activePath=='' ">
+    <i class="icon iconfont icon-home1"></i>
+    <span>首页</span>
+
+  </div>
+  <div class=" flex column" [class.active]="activePath=='/tag'">
+    <i class="icon iconfont icon-category"></i>
+    <span>分类</span>
+
+  </div>
+  <div class="flex column" [class.active]="activePath=='/shoping-car'">
+    <i class="icon iconfont icon-dinglanyoucegouwuche21"></i>
+    <span>购物车</span>
+
+  </div>
+  <div class=" flex column" (click)="my()" [class.active]="activePath=='/user'">
+    <i class="icon iconfont icon-my"></i>
+    <span>我的</span>
+
+  </div>
+
+</div>

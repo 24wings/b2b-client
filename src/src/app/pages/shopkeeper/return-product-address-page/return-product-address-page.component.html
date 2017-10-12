@@ -1,0 +1,49 @@
+<app-transition class="bg-gray" style="min-height:100vh;">
+  <div class="container bg-white ">
+    <div class="underline flex space-between">
+      <span>收货人</span>
+      <input type="text" [(ngModel)]="returnProductAddress.name">
+    </div>
+    <div class="underline flex space-between">
+      <span>手机号码</span>
+      <input type="text" [(ngModel)]="returnProductAddress.phone">
+    </div>
+    <div class="underline flex space-between">
+      <span>邮政编号</span>
+      <input type="text" [(ngModel)]="returnProductAddress.postalCode">
+    </div>
+    <div class="underline flex space-between" (click)="addressSelect.show()">
+      <span>省份</span>
+      <input type="text" disabled="disabled" [(ngModel)]="returnProductAddress.region.name">
+      <span class="shrink"><i class="icon iconfont icon-down2"></i></span>
+
+    </div>
+    <div class="underline flex space-between" (click)="addressSelect.show()">
+      <span>城市</span>
+      <input type="text" disabled="disabled" [(ngModel)]="returnProductAddress.city.name">
+      <span class="shrink"><i class="icon iconfont icon-down2"></i></span>
+
+    </div>
+    <div class="underline flex space-between">
+      <span>地区</span>
+      <input type="text" disabled="disabled" [(ngModel)]="returnProductAddress.town.name">
+      <span class="shrink"><i class="icon iconfont icon-down2"></i></span>
+
+    </div>
+
+    <div class="underline flex space-between">
+      <textarea [(ngModel)]="returnProductAddress.detailAddress"></textarea>
+    </div>
+
+
+  </div>
+  <div class="container ">
+    <div style="padding-top:3rem;padding-bottom:3rem">
+      <div class="btn rounded  bg-orange center-block text-white" style="margin-top:2rem; width:80%;padding:auto 20px;" (click)="modifyReturnProductAddress()">确定</div>
+    </div>
+
+  </div>
+
+</app-transition>
+<app-address-select #addressSelect (onSelectRegion)="returnProductAddress.region=$event;" (onSelectCity)="returnProductAddress.city=$event"
+  (onSelectTown)="returnProductAddress.town =$event"></app-address-select>

@@ -1,0 +1,77 @@
+<div *ngIf="state==View.List">
+  <app-transition>
+    <div>
+      <div class="line1"></div>
+      <div class="flex task" *ngFor="let task of tasks;let i = index">
+        <div class="flex1 flex flex-center" (click)="task.checked=!task.checked">
+          <i class="icon iconfont icon-circle" *ngIf="!task.checked"></i>
+          <div class="red-circle" *ngIf="task.checked"></div>
+        </div>
+        <div class="flex2 flex">
+          <img [src]="config.user.avatar" alt="" class="img-fluid avatar">
+        </div>
+        <div class="flex6 info" (click)="selectTask(task)">
+          <h6>
+            <span class="title">  {{task.title}}</span>
+            <p class="float-right text-sm text-gray time">{{task.createDt | date:'yyyy-MM-dd hh:mm:ss'}}</p>
+          </h6>
+          <p class="summary">{{task.content}}</p>
+
+        </div>
+
+        <div class="flex1 flex flex-center"> <i class="icon iconfont icon-enter"></i></div>
+
+      </div>
+
+    </div>
+  </app-transition>
+  <div class="flex fixed-bottom bottom-bar" *ngIf="someChecked()">
+    <div class="flex4"></div>
+    <div class="flex1 " (click)="toggleAllChecked()">
+      <i class="icon iconfont icon-circle text-orange" *ngIf="!everyChecked()"></i>
+      <i class="icon iconfont icon-gou text-orange" *ngIf="everyChecked()"></i> 全选</div>
+    <div class="flex1 bg-orange text-white" (click)="deleteTask()">删除</div>
+  </div>
+  <button class="btn btn-block btn-primary fixed-bottom" (click)="state=View.CreatingTask" *ngIf="!someChecked()">发布需求</button>
+</div>
+
+
+
+<div *ngIf="state==View.CreatingTask">
+  <app-transition>
+    <div class="line1"></div>
+    <div class="flex">
+      <div class="flex2">
+        <img [src]="config.user.avatar" alt="" class="avatar">
+      </div>
+      <div class="flex6">
+        <input type="text" [(ngModel)]="newTask.title">
+      </div>
+    </div>
+    <div class="line1"></div>
+
+    <p style="padding-left:2rem">我的需求的具体描述</p>
+    <textarea [(ngModel)]="newTask.content"></textarea>
+  </app-transition>
+  <button class="btn btn-block btn-primary fixed-bottom" (click)="publishTask()">确定</button>
+
+</div>
+<div *ngIf="state==View.SelectingTask">
+  <app-transition>
+    <div class="line1"></div>
+    <div class="flex">
+      <div class="flex2">
+        <img [src]="selectedTask.user.avatar" alt="" class="avatar">
+      </div>
+      <div class="flex6">
+        <input type="text" [(ngModel)]="selectedTask.title">
+      </div>
+    </div>
+    <div class="line1"></div>
+
+    <p style="padding-left:2rem">我的需求的具体描述</p>
+    <textarea [(ngModel)]="selectedTask.content"></textarea>
+  </app-transition>
+  <button class="btn btn-block btn-primary fixed-bottom" (click)="modifyTask()">修改</button>
+
+</div>

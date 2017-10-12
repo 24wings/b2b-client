@@ -1,0 +1,66 @@
+<div class="container toolbar">
+
+  <button class="btn btn-primary" (click)="state=View.List">列表</button> <button class="btn btn-primary" (click)="state=View.Create">添加物流</button>
+
+</div>
+
+
+<app-transition *ngIf="state==View.List">
+  <div class="container">
+    <table class="table">
+      <thead>
+        <th>_id</th>
+        <th> 图标</th>
+        <th>物流名字</th>
+        <th>添加时间</th>
+        <th>修改</th>
+        <th>删除</th>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let transfer of tansfers">
+          <td>{{transfer._id}}</td>
+          <td class="flex flex-center" style="max-height:4rem;"><img [src]="transfer.logo" alt=""></td>
+          <td>{{transfer.name}}</td>
+          <td>{{transfer.createDt | date :'yyyy-MM-dd hh:mm:ss' }}</td>
+          <td><button class="btn btn-primary">修改</button></td>
+          <td><button class="btn btn-danger">删除</button></td>
+
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+</app-transition>
+
+
+<app-transition *ngIf="state==View.Create">
+  <div class="container">
+    <div class="form-group row" (click)="changeLogo()">
+
+      <label for="example-text-input" class="col-2 col-form-label">LOGO: </label>
+      <div class="col-10">
+        <input class="form-control" type="text" [(ngModel)]="newTransfer.logo" disabled="disabled" *ngIf="!newTransfer.logo">
+        <img [src]="newTransfer.logo" alt="" *ngIf="newTransfer.logo">
+      </div>
+    </div>
+
+    <div class="form-group row">
+
+      <label for="example-text-input" class="col-2 col-form-label">分类名称</label>
+      <div class="col-10">
+        <input class="form-control" type="text" [(ngModel)]="newTransfer.name">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="example-text-input" class="col-2 col-form-label">排序</label>
+      <div class="col-10">
+        <input class="form-control" type="number" [(ngModel)]="newTransfer.sort">
+      </div>
+    </div>
+    <div class="col-12 text-center">
+      <button class="btn btn-primary" (click)="addTransfer()">确认</button>
+    </div>
+  </div>
+</app-transition>

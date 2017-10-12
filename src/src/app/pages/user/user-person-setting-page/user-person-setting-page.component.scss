@@ -1,0 +1,49 @@
+.items>div{
+padding:.5rem;
+border-bottom: 1px solid lightgray;
+display: flex;
+justify-content: space-between;
+align-items: center;
+
+}
+.avatar{
+    width:20vw;
+    height: 20vw;
+    border-radius:50%;
+}
+
+.search{
+    border:1px solid orange;
+    width: 100%;
+    border-top: none;
+}
+
+.close{
+    background: lightgray;
+    border-radius: 50%;
+    position: absolute;
+    right: 1rem;
+    font-size: 1rem;
+}
+
+.cover{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    opacity: .5;
+}
+
+.cover-items{
+    width:80vw;
+    &>div{
+        padding:.5rem;
+        border-bottom: 1px solid lightgray;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+    }
+}

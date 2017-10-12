@@ -1,0 +1,64 @@
+.search{
+    display: flex;
+    padding:.5rem 1rem;
+    background: #eee;
+    .search-input{
+        height:2rem;
+        line-height: 2rem;
+        padding-left: 1rem;
+        display: flex;
+        width: 100%;
+        background: #fff;
+        border: none;
+        border-radius: 5px;
+        input{
+            border: none;
+            width: 100%;
+            border-radius: 5px;
+        }
+    }
+    .icon-search{
+        flex-shrink: 0;
+    }
+}
+
+
+.tabs{
+    display: flex;
+
+    &>div{
+        padding-top:.5rem;
+        padding-bottom:.5rem;
+        
+        flex:1;
+        text-align: center;
+       &.active{
+           color:orange;
+           border-bottom: 2px solid orange;
+       } 
+    }
+}
+
+
+.product{
+    padding-top:1rem;
+    padding-bottom:1rem;
+}
+
+.num{
+    font-size: .6rem;
+    color: gray;
+}
+
+
+
+.button-bar {
+    &>div{
+        text-align: center;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+}
+.text-orange{
+    color:orange;
+}
